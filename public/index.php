@@ -1,7 +1,12 @@
 <?php
 
- require_once "../bootstrap/init.php";
+use App\classes\Mail;
 
-use Illuminate\Database\Capsule\Manager as Capsule;
-$user = capsule::table('users')->where('id',1)->get();
-print_r($user);
+require_once "../bootstrap/init.php";
+
+$mailer = new Mail();
+if($mailer->send()){
+    echo "Mail sent successfully";
+}else{
+    echo "Mail failed";
+}

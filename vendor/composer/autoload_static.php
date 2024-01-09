@@ -32,6 +32,7 @@ class ComposerStaticInit839c8c9f186086632964e1c1815bc3dd
             'Psr\\Container\\' => 14,
             'PhpOption\\' => 10,
             'Philo\\Blade\\' => 12,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'I' => 
         array (
@@ -107,6 +108,10 @@ class ComposerStaticInit839c8c9f186086632964e1c1815bc3dd
         'Philo\\Blade\\' => 
         array (
             0 => __DIR__ . '/..' . '/philo/laravel-blade/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Illuminate\\View\\' => 
         array (
