@@ -13,7 +13,8 @@
         "altorouter/altorouter": "^2.0",
         "philo/laravel-blade": "*",
         "illuminate/database": "*",
-        "phpmailer/phpmailer": "*"
+        "phpmailer/phpmailer": "*",
+        "filp/whoops": "*"
     },
     "config": {
         "allow-plugins": {

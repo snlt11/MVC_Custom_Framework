@@ -8,7 +8,8 @@
     <title>Document</title>
 </head>
 <body>
+<img src="<?php //echo URL_ROOT. '/assets/images/logo.jpg' ?>" alt="" >
+
     <h1>welcome blade</h1>
-    <img src="<?php echo URL_ROOT. '/assets/images/logo.jpg' ?>" alt="" >
 </body>
 </html>
