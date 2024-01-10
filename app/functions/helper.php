@@ -10,3 +10,10 @@ function view($path, $data = []){
 
 }
 
+function beautify($data){
+    echo  "<pre>".print_r($data, true)."</pre>";
+}
+
+function asset($link){
+    echo URL_ROOT .'/assets/'.$link;
+}

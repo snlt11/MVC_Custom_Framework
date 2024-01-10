@@ -1,15 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<img src="<?php //echo URL_ROOT. '/assets/images/logo.jpg' ?>" alt="" >
+@extends("layout/master")
+@section("Title","E-commerce")
 
-    <h1>welcome blade</h1>
-</body>
-</html>
+
+@section("content")
+    <h1>This is Home Page</h1>
+
+@endsection
