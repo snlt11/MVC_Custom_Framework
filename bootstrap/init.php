@@ -6,8 +6,9 @@ use App\classes\ErrorHandler;
 if(!isset($SESSION)) session_start();
 
 define('APP_ROOT',realpath(__DIR__.'/../'));
-//const URL_ROOT = 'http://127.0.0.1/E-Commerce/public/';
-define('URL_ROOT', 'http://127.0.0.1/E-Commerce/public/');
+const URL_ROOT = 'http://127.0.0.1/E-Commerce/public';
+
+//define('URL_ROOT', 'http://127.0.0.1/E-Commerce/public');
 
 
 

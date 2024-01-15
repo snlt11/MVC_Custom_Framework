@@ -14,7 +14,9 @@
         "philo/laravel-blade": "*",
         "illuminate/database": "*",
         "phpmailer/phpmailer": "*",
-        "filp/whoops": "*"
+        "filp/whoops": "*",
+        "ext-openssl": "*",
+        "ext-json": "*"
     },
     "config": {
         "allow-plugins": {
