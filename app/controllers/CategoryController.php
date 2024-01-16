@@ -7,7 +7,6 @@ use App\classes\Redirect;
 use App\classes\Request;
 use App\classes\Session;
 use App\classes\UploadFile;
-
 class CategoryController extends BaseController
 {
     public function index(){
@@ -15,7 +14,6 @@ class CategoryController extends BaseController
        view("admin/category/create");
     }
     public function store(){
-
         $post = Request::get('post');
 //        Session::remove('token');
         if(CSRFToken::checkToken($post->token)){
