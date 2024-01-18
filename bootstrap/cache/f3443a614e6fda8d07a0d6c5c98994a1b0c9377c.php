@@ -8,6 +8,7 @@
                     <?php echo $__env->make("layout/admin_sidebar", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                 </div>
                 <div class="col-md-7">
+                    <?php echo $__env->make("layout.report_message", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     <h1 class="text-primary text-center">Create Category</h1>
                     <form action="/admin/category/create" method="post" enctype="multipart/form-data">
                         <div class="mb-3 form-group">

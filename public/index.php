@@ -1,13 +1,12 @@
 <?php
-use Illuminate\Database\Capsule\Manager as Capsule;
 
 use App\classes\Session;
 
 require_once "../bootstrap/init.php";
 
-//$user = Capsule::table('categories')->where('id',1)->get();
-//beautify($user);
-
+$test = "Local@# Tester";
+//$var = "local-tester";
+echo slug($test);
 
 
 

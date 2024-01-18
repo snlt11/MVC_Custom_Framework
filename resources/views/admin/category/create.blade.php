@@ -1,4 +1,3 @@
-
 @extends('layout/master')
 @section('title','Category Create')
 
@@ -10,6 +9,7 @@
                     @include("layout/admin_sidebar")
                 </div>
                 <div class="col-md-7">
+                    @include("layout.report_message")
                     <h1 class="text-primary text-center">Create Category</h1>
                     <form action="/admin/category/create" method="post" enctype="multipart/form-data">
                         <div class="mb-3 form-group">
