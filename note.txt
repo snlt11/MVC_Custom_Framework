@@ -1,1 +1,4 @@
 
+//        $cats = Category::all();
+//        beautify($cats);
+//       view("admin/category/create",compact('cats'));
