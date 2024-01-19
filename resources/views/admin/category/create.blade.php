@@ -9,8 +9,14 @@
                     @include("layout/admin_sidebar")
                 </div>
                 <div class="col-md-7">
-                    @include("layout.report_message")
                     <h1 class="text-primary text-center">Create Category</h1>
+                    @include("layout.report_message")
+                    @if(\App\Classes\Session::has('delete_success'))
+                        {{\App\Classes\Session::flash('delete_success')}}
+                    @endif
+                    @if(\App\Classes\Session::has('delete_fail'))
+                        {{\App\Classes\Session::flash('delete_fail')}}
+                    @endif
                     <form action="/admin/category/create" method="post" enctype="multipart/form-data">
                         <div class="mb-3 form-group">
                             <label for="name" class="form-label">Category Name</label>
@@ -27,7 +33,7 @@
                                 <a href="/admin/category/all" class="text-decoration-none">{{$cat->name}}</a>
                                 <span class="float-right">
                                     <i class="fa-solid fa-pen-to-square text-warning"></i>
-                                    <i class="fa-solid fa-trash text-danger"></i>
+                                    <a href="/admin/category/{{$cat->id}}/delete"><i class="fa-solid fa-trash text-danger"></i></a>
                                 </span>
                             </li>
                         @endforeach

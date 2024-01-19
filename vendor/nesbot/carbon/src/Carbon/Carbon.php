@@ -469,7 +469,7 @@ class Carbon extends DateTime implements JsonSerializable
             $tzName = timezone_name_from_abbr(null, $object * 3600, true);
 
             if ($tzName === false) {
-                throw new InvalidArgumentException('Unknown or bad timezone ('.$object.')');
+                throw new InvalidArgumentException('Unknown or bad timezone (' . $object . ')');
             }
 
             $object = $tzName;
@@ -493,7 +493,7 @@ class Carbon extends DateTime implements JsonSerializable
         }
         // @codeCoverageIgnoreEnd
 
-        throw new InvalidArgumentException('Unknown or bad timezone ('.$object.')');
+        throw new InvalidArgumentException('Unknown or bad timezone (' . $object . ')');
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -533,7 +533,8 @@ class Carbon extends DateTime implements JsonSerializable
 
         $timezone = static::safeCreateDateTimeZone($tz);
         // @codeCoverageIgnoreStart
-        if ($isNow && !isset($testInstance) && static::isMicrosecondsFallbackEnabled() && (
+        if (
+            $isNow && !isset($testInstance) && static::isMicrosecondsFallbackEnabled() && (
                 version_compare(PHP_VERSION, '7.1.0-dev', '<')
                 ||
                 version_compare(PHP_VERSION, '7.1.3-dev', '>=') && version_compare(PHP_VERSION, '7.1.4-dev', '<')
@@ -543,7 +544,7 @@ class Carbon extends DateTime implements JsonSerializable
             list($microTime, $timeStamp) = explode(' ', microtime());
             $dateTime = new DateTime('now', $timezone);
             $dateTime->setTimestamp($timeStamp); // Use the timestamp returned by microtime as now can happen in the next second
-            $time = $dateTime->format(static::DEFAULT_TO_STRING_FORMAT).substr($microTime, 1, 7);
+            $time = $dateTime->format(static::DEFAULT_TO_STRING_FORMAT) . substr($microTime, 1, 7);
         }
         // @codeCoverageIgnoreEnd
 
@@ -899,8 +900,8 @@ class Carbon extends DateTime implements JsonSerializable
 
             // Prepend mock datetime only if the format does not contain non escaped unix epoch reset flag.
             if (!preg_match("/{$nonEscaped}[!|]/", $format)) {
-                $format = static::MOCK_DATETIME_FORMAT.' '.$format;
-                $time = $mock->format(static::MOCK_DATETIME_FORMAT).' '.$time;
+                $format = static::MOCK_DATETIME_FORMAT . ' ' . $format;
+                $time = $mock->format(static::MOCK_DATETIME_FORMAT) . ' ' . $time;
             }
 
             // Regenerate date from the modified format to base result on the mocked instance instead of now.
@@ -920,11 +921,11 @@ class Carbon extends DateTime implements JsonSerializable
     /**
      * Set last errors.
      *
-     * @param array $lastErrors
+     * @param $lastErrors
      *
      * @return void
      */
-    private static function setLastErrors(array $lastErrors)
+    private static function setLastErrors($lastErrors)
     {
         static::$lastErrors = $lastErrors;
     }
@@ -973,7 +974,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public static function createFromTimestampUTC($timestamp)
     {
-        return new static('@'.$timestamp);
+        return new static('@' . $timestamp);
     }
 
     /**
@@ -1040,8 +1041,8 @@ class Carbon extends DateTime implements JsonSerializable
 
         if (!$date instanceof DateTime && !$date instanceof DateTimeInterface) {
             throw new InvalidArgumentException(
-                $message.'DateTime or DateTimeInterface, '.
-                (is_object($date) ? get_class($date) : gettype($date)).' given'
+                $message . 'DateTime or DateTimeInterface, ' .
+                    (is_object($date) ? get_class($date) : gettype($date)) . ' given'
             );
         }
     }
@@ -1805,7 +1806,7 @@ class Carbon extends DateTime implements JsonSerializable
         $translator = static::translator();
         $locales = array();
         if ($translator instanceof Translator) {
-            foreach (glob(__DIR__.'/Lang/*.php') as $file) {
+            foreach (glob(__DIR__ . '/Lang/*.php') as $file) {
                 $locales[] = substr($file, strrpos($file, '/') + 1, -4);
             }
 
@@ -2154,12 +2155,12 @@ class Carbon extends DateTime implements JsonSerializable
         }
 
         $year = $this->year < 0 || $this->year > 9999
-            ? ($this->year < 0 ? '-' : '+').str_pad(abs($this->year), 6, '0', STR_PAD_LEFT)
+            ? ($this->year < 0 ? '-' : '+') . str_pad(abs($this->year), 6, '0', STR_PAD_LEFT)
             : str_pad($this->year, 4, '0', STR_PAD_LEFT);
         $tz = $keepOffset ? $this->format('P') : 'Z';
         $date = $keepOffset ? $this : $this->copy()->setTimezone('UTC');
 
-        return $year.$date->format('-m-d\TH:i:s.u').$tz;
+        return $year . $date->format('-m-d\TH:i:s.u') . $tz;
     }
 
     /**
@@ -3035,7 +3036,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function isMidday()
     {
-        return $this->format('G:i:s') === static::$midDayAt.':00:00';
+        return $this->format('G:i:s') === static::$midDayAt . ':00:00';
     }
 
     /**
@@ -3061,7 +3062,7 @@ class Carbon extends DateTime implements JsonSerializable
                 static::$regexFormats
             );
 
-            return (bool) preg_match('/^'.$regex.'$/', $date);
+            return (bool) preg_match('/^' . $regex . '$/', $date);
         } catch (InvalidArgumentException $e) {
         }
 
@@ -3187,7 +3188,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function addYearsWithOverflow($value)
     {
-        return $this->modify((int) $value.' year');
+        return $this->modify((int) $value . ' year');
     }
 
     /**
@@ -3386,7 +3387,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function addMonthsWithOverflow($value)
     {
-        return $this->modify((int) $value.' month');
+        return $this->modify((int) $value . ' month');
     }
 
     /**
@@ -3437,7 +3438,7 @@ class Carbon extends DateTime implements JsonSerializable
     {
         $day = $this->day;
 
-        $this->modify((int) $value.' month');
+        $this->modify((int) $value . ' month');
 
         if ($day !== $this->day) {
             $this->modify('last day of previous month');
@@ -3492,7 +3493,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function addDays($value)
     {
-        return $this->modify((int) $value.' day');
+        return $this->modify((int) $value . ' day');
     }
 
     /**
@@ -3543,7 +3544,7 @@ class Carbon extends DateTime implements JsonSerializable
     {
         // Fix for weekday bug https://bugs.php.net/bug.php?id=54909
         $t = $this->toTimeString();
-        $this->modify((int) $value.' weekday');
+        $this->modify((int) $value . ' weekday');
 
         return $this->setTimeFromTimeString($t);
     }
@@ -3594,7 +3595,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function addWeeks($value)
     {
-        return $this->modify((int) $value.' week');
+        return $this->modify((int) $value . ' week');
     }
 
     /**
@@ -3643,7 +3644,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function addHours($value)
     {
-        return $this->modify((int) $value.' hour');
+        return $this->modify((int) $value . ' hour');
     }
 
     /**
@@ -3741,7 +3742,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function addMinutes($value)
     {
-        return $this->modify((int) $value.' minute');
+        return $this->modify((int) $value . ' minute');
     }
 
     /**
@@ -3839,7 +3840,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function addSeconds($value)
     {
-        return $this->modify((int) $value.' second');
+        return $this->modify((int) $value . ' second');
     }
 
     /**
@@ -4473,7 +4474,7 @@ class Carbon extends DateTime implements JsonSerializable
                 }
             }
             // Some languages have special pluralization for past and future tense.
-            $key = $unit.'_'.$transId;
+            $key = $unit . '_' . $transId;
             if ($key !== static::translator()->transChoice($key, $count)) {
                 $time = static::translator()->transChoice($key, $count, array(':count' => $count));
             }
@@ -4935,7 +4936,7 @@ class Carbon extends DateTime implements JsonSerializable
             $dayOfWeek = $this->dayOfWeek;
         }
 
-        return $this->startOfDay()->modify('next '.static::$days[$dayOfWeek]);
+        return $this->startOfDay()->modify('next ' . static::$days[$dayOfWeek]);
     }
 
     /**
@@ -5013,7 +5014,7 @@ class Carbon extends DateTime implements JsonSerializable
             $dayOfWeek = $this->dayOfWeek;
         }
 
-        return $this->startOfDay()->modify('last '.static::$days[$dayOfWeek]);
+        return $this->startOfDay()->modify('last ' . static::$days[$dayOfWeek]);
     }
 
     /**
@@ -5034,7 +5035,7 @@ class Carbon extends DateTime implements JsonSerializable
             return $this->day(1);
         }
 
-        return $this->modify('first '.static::$days[$dayOfWeek].' of '.$this->format('F').' '.$this->year);
+        return $this->modify('first ' . static::$days[$dayOfWeek] . ' of ' . $this->format('F') . ' ' . $this->year);
     }
 
     /**
@@ -5055,7 +5056,7 @@ class Carbon extends DateTime implements JsonSerializable
             return $this->day($this->daysInMonth);
         }
 
-        return $this->modify('last '.static::$days[$dayOfWeek].' of '.$this->format('F').' '.$this->year);
+        return $this->modify('last ' . static::$days[$dayOfWeek] . ' of ' . $this->format('F') . ' ' . $this->year);
     }
 
     /**
@@ -5073,7 +5074,7 @@ class Carbon extends DateTime implements JsonSerializable
     {
         $date = $this->copy()->firstOfMonth();
         $check = $date->format('Y-m');
-        $date->modify('+'.$nth.' '.static::$days[$dayOfWeek]);
+        $date->modify('+' . $nth . ' ' . static::$days[$dayOfWeek]);
 
         return $date->format('Y-m') === $check ? $this->modify($date) : false;
     }
@@ -5124,7 +5125,7 @@ class Carbon extends DateTime implements JsonSerializable
         $date = $this->copy()->day(1)->month($this->quarter * static::MONTHS_PER_QUARTER);
         $lastMonth = $date->month;
         $year = $date->year;
-        $date->firstOfQuarter()->modify('+'.$nth.' '.static::$days[$dayOfWeek]);
+        $date->firstOfQuarter()->modify('+' . $nth . ' ' . static::$days[$dayOfWeek]);
 
         return ($lastMonth < $date->month || $year !== $date->year) ? false : $this->modify($date);
     }
@@ -5172,7 +5173,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function nthOfYear($nth, $dayOfWeek)
     {
-        $date = $this->copy()->firstOfYear()->modify('+'.$nth.' '.static::$days[$dayOfWeek]);
+        $date = $this->copy()->firstOfYear()->modify('+' . $nth . ' ' . static::$days[$dayOfWeek]);
 
         return $this->year === $date->year ? $this->modify($date) : false;
     }

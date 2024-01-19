@@ -27,15 +27,46 @@ class CategoryController extends BaseController
             if($validator->hasError()){
                 $cats = Category::all();
                 $errors = $validator->getError();
-//                beautify($errors);
                 view("admin/category/create",compact('cats','errors'));
             }else{
-                echo "Good to go";
+                $slug = slug($post->name);
+                $con = Category::create([
+                   "name" => $post->name,
+                    "slug" => $slug
+                ]);
+                if($con){
+                    $cats = Category::all();
+                    $success = "Category created successfully";
+                    view("admin/category/create",compact('cats','success'));
+                }else{
+                    echo "error";
+                }
+//                $slug = slug($post->name);
+//                $category = new Category();
+//                $category->name = $post->name;
+//                $category->slug = $slug;
+//                if($category->save()){
+//                    echo "save";
+//                }else{
+//                    echo "failed";
+//                }
+
             }
 
         }else{
             Session::flash('error',"CSRF Fields Error");
             Redirect::back();
+        }
+    }
+
+    public function delete($id){
+        $con = Category::destroy($id);
+        if($con){
+            Session::flash('delete_success',"Category deleted successfully");
+            Redirect::to('/admin/category/create');
+        }else{
+            Session::flash('delete_fail',"Category delete failed");
+            Redirect::to('/admin/category/create');
         }
     }
 }

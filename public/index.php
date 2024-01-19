@@ -4,11 +4,6 @@ use App\classes\Session;
 
 require_once "../bootstrap/init.php";
 
-$test = "Local@# Tester";
-//$var = "local-tester";
-echo slug($test);
-
-
 
 //Error Testing
 //$post = [
@@ -32,5 +27,10 @@ echo slug($test);
 //}
 //$con = $validator->number("email","123.12",5);
 //var_dump($con);
+//
+//$test = "Local@# Tester";
+////$var = "local-tester";
+//echo slug($test);
+
 
 
