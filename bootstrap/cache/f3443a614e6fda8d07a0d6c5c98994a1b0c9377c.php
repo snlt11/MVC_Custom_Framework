@@ -1,6 +1,13 @@
 <?php $__env->startSection('title','Category Create'); ?>
 
 <?php $__env->startSection('content'); ?>
+    <style>
+        .pagination > li{
+            padding: 5px 10px;
+            background :#ddd;
+            margin-right : 1px;
+        }
+    </style>
     <div class="container mt-5">
         <div class="container">
             <div class="row">
@@ -39,6 +46,11 @@
                             </li>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
+                    <div class="mt-5">
+                        <?php echo $pages; ?>
+
+                    </div>
+
                 </div>
             </div>
         </div>

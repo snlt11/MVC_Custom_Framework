@@ -2,6 +2,13 @@
 @section('title','Category Create')
 
 @section('content')
+    <style>
+        .pagination > li{
+            padding: 5px 10px;
+            background :#ddd;
+            margin-right : 1px;
+        }
+    </style>
     <div class="container mt-5">
         <div class="container">
             <div class="row">
@@ -38,6 +45,10 @@
                             </li>
                         @endforeach
                     </ul>
+                    <div class="mt-5">
+                        {!! $pages !!}
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -13,8 +13,10 @@ use App\models\Category;
 class CategoryController extends BaseController
 {
     public function index(){
-        $cats = Category::all();
-        view("admin/category/create",compact('cats'));
+        $categories = Category::all()->count();
+        list($cats,$pages) = paginate(3,$categories,new Category());
+        $cats = json_decode(json_encode($cats));
+        view("admin/category/create",compact('cats','pages'));
     }
     public function store(){
         $post = Request::get('post');
